@@ -6,7 +6,7 @@ a) a = 0                     # O(1)
    while (a < n * n * n):    # O(n^3)
        a = a + n * n         # O(n^2)
 
-## Setting a variable takes the same amount of time no matter how large the variable is, so a = 0 has a constant O(1) runtime. The next line has a runtime complexity of O(n^3) because the number of times the while loop runs depends on the cube of the input n. On the last line we are making a single calculation of (c + n * n) which can be simplified to (c + n^2). If this is pseudocode, n could represent an array, in which case the runtime complexity of O(n^2) is the worst case. If this was not pseudocode, the last line would be a single calculation regardless of how large n becomes, making it O(1). However, we are looking for worst case, so O(n^2) is my final answer. Overall, because O(n^3) is the worst case, O(n^3) is the overall runtime complexity. 
+## Setting a variable takes the same amount of time no matter how large the variable is, so a = 0 has a constant O(1) runtime. The next line has a runtime complexity of O(n^3) because the number of times the while loop runs depends on the cube of the input n. On the last line we are making a single calculation of (c + n * n) which can be simplified to (c + n^2). If this is pseudocode, n could represent an array, in which case the runtime complexity of O(n^2) is the worst case. If this was not pseudocode, the last line would be a single calculation regardless of how large n becomes, making it O(1). However, we are looking for worst case, so O(n^2) is my final answer for the last line. Overall, because O(n^3) is the worst case, O(n^3) is the overall runtime complexity. 
 
 b) sum = 0              # O(1)
    for i in range(n):   # O(n)

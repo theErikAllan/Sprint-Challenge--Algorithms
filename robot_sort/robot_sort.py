@@ -97,14 +97,52 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # The robot starts on the left side, position = 0
+        # The robot starts with empty hands
+        # The robot picks up the item at position 0 if the robot is not holding one already
+        if self.can_move_left() == False and self.compare_item() is None:
+            self.swap_item()
+            print("Robot is holding this after initial if: ", self._item)
+
+        # The robot checks to see if it can move right
+        if self.can_move_right() == True:
+            # If the robot can move right, it moves right by 1
+            self.move_right()
+            print("Robot position is: ", self._position)
+
+            # The robot compares the item in its hands with the item in front of it
+            if self.compare_item() <= 0:
+                # If the held item is less than or equal to the item in front, the robot moves left and drops (swaps) the item in its original place, and then moves right again to pick up the next item to compare
+                self.move_left()
+                self.swap_item()
+                self.move_right()
+                self.swap_item()
+                # Then we recursively call the sort() method and move down the list
+                print("Robot is holding this after held < front: ", self._item)
+                return self.sort()
+
+            elif self.compare_item() > 0:
+                # If the held item is greater than the item in front, we recursively call the sort() method and move down the list
+                print("Robot is holding this after held > front: ", self._item)
+                return self.sort()
+        else:
+            # If the robot cannot move to the right, we have reached the end of the list and need to drop the current item as it is the maximum, and start from the beginning of the list
+            print("Before end swap, Robot is holding: ", self._item)
+            self.swap_item()
+            print("After end swap, Robot is holding: ", self._item)
+            while self.can_move_left() == True:
+                self.move_left()
+                print("This is robot's position: ", self._position)
+            return self.sort()
 
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    biglist = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+
+    l = [15, 41, 58, 49, 26, 4, 28]
 
     robot = SortingRobot(l)
 
