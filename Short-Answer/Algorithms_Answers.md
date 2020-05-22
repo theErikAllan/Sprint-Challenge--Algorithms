@@ -29,3 +29,23 @@ c) def bunnyEars(bunnies):                  # O(1)
 
 
 ## Exercise II
+
+We have:
+n-story building
+all the eggs
+
+We know:
+eggs thrown from floor >= f will break
+eggs thrown from floor < f will not break
+
+We want:
+value of f that will result in minimal broken eggs
+
+Plan:
+If we are not limited by the number of eggs we have, but we want to minimize the number of eggs we drop as we find floor f, we can start by cutting the number of floors we test in half. We can then drop an egg from floor=0 and floor=n/2. 
+
+If the egg is fine when dropped from floor=0 but breaks when dropped from floor=n/2, we know we only have to look at the bottom half of the building, or (0 : n/2). If the egg is fine when dropped from both floors, then we know to look at the top half of the building, or (n/2 + 1 : n).
+
+Depending on that outcome, we then split the remaining half into 2 halves, and continue the search for floor f.
+
+The runtime complexity of this algorithm would be O(nlogn), as the input data is repeatedly cut in half as we approach the correct answer.
